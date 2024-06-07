@@ -8,7 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const corsOptions = {
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:3000", "https://crud-client-rho.vercel.app"],
   credentials: true,
 };
 
@@ -17,10 +17,11 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 // Middleware
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
 app.use("/storage", express.static(__dirname + "/storage"));
+
 // Routes section
 app.get("/", (req, res) => {
   res.send("Hello World!");
