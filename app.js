@@ -19,9 +19,9 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
+console.log("hello.....");
 app.use(cors(corsOptions));
 app.use("/storage", express.static(__dirname + "/storage"));
-
 // Routes section
 app.use("/api/auth", authRoutes);
 app.use("/api/companies", companiesRoute);
