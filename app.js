@@ -16,8 +16,16 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
+// Debugging middleware
+app.use((req, res, next) => {
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+  console.log(`Request Headers:`, req.headers);
+  next();
+});
+
 // Middleware
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/storage", express.static(__dirname + "/storage"));
