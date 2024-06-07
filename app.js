@@ -10,7 +10,7 @@ require("dotenv").config();
 const { db } = require("./config/db.js");
 
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://test1.amiyon.com/"],
+  origin: ["http://localhost:3000", "https://test1.amiyon.com"],
   credentials: true,
 };
 
