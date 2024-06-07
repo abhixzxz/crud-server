@@ -19,11 +19,10 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
-console.log("hello.....");
 app.use(cors(corsOptions));
 app.use("/storage", express.static(__dirname + "/storage"));
 // Routes section
-app.get("/hello", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.use("/api/auth", authRoutes);
