@@ -1,4 +1,4 @@
-const db = require("../config/db");
+const { db } = require("../config/db");
 
 const addEmployee = (req, res) => {
   const { firstName, lastName, company, email, phone } = req.body;

@@ -1,4 +1,4 @@
-const db = require("../config/db");
+const { db } = require("../config/db");
 
 const addCompany = (req, res) => {
   const { name, email, website } = req.body;
