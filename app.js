@@ -23,6 +23,9 @@ console.log("hello.....");
 app.use(cors(corsOptions));
 app.use("/storage", express.static(__dirname + "/storage"));
 // Routes section
+app.get("/hello", (req, res) => {
+  res.send("Hello World!");
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/companies", companiesRoute);
 app.use("/api/employees", employeesRoute);
