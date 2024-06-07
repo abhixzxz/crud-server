@@ -1,5 +1,5 @@
-const db = require("../config/db");
-const bcrypt = require("bcrypt");
+const { db } = require("../config/db");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const salt = 10;

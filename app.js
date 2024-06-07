@@ -4,13 +4,14 @@ const companiesRoute = require("./routes/companiesRoutes.js");
 const employeesRoute = require("./routes/employeeRoutes.js");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const { PORT } = require("./helpers/index.js");
 const cors = require("cors");
+require("dotenv").config();
 
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
 };
+const port = process.env.PORT || 5000;
 
 const app = express();
 
@@ -25,6 +26,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/companies", companiesRoute);
 app.use("/api/employees", employeesRoute);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
