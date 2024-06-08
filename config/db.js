@@ -11,29 +11,32 @@ function handleDisconnect() {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    port: process.env.DB_PORT || 3306,
     connectTimeout: 10000,
   });
 
   db.connect((err) => {
     if (err) {
-      console.error("Error connecting to database:", err.stack);
+      console.error(
+        `[${new Date().toISOString()}] Error connecting to database:`,
+        err.stack
+      );
       reconnectAttempts++;
       if (reconnectAttempts <= maxReconnectAttempts) {
         setTimeout(handleDisconnect, Math.min(1000 * reconnectAttempts, 30000));
       } else {
         console.error(
-          "Max reconnect attempts reached. Please check the database server."
+          `[${new Date().toISOString()}] Max reconnect attempts reached. Please check the database server.`
         );
       }
     } else {
-      console.log("Connected to database");
+      console.log(`[${new Date().toISOString()}] Connected to database`);
       reconnectAttempts = 0;
     }
   });
 
   db.on("error", (err) => {
-    console.error("Database error:", err);
+    console.error(`[${new Date().toISOString()}] Database error:`, err);
     if (
       err.code === "PROTOCOL_CONNECTION_LOST" ||
       err.code === "ECONNRESET" ||
